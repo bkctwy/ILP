@@ -38,6 +38,7 @@ def main(**kwargs) -> None:
 @main.command(help="下载小说")
 @click.option("--id", "-i", default=None, required=True, help="小说ID")
 @click.option("--cookie", "-c", default=None, help="cookie")
+@click.option("--debug", "-d", is_flag=True, help="调试模式")
 @click.option(
     "--site",
     "-s",
@@ -48,8 +49,8 @@ def main(**kwargs) -> None:
 )
 def download(**kwargs):
     global logger
-    ctx = click.get_current_context()
-    debug = ctx.parent.params.get("debug")
+    # ctx = click.get_current_context()
+    debug = kwargs.get("debug", False)
     scraper = create_scraper_instance(
         site_name=kwargs["site"],
         book_id=kwargs["id"],
@@ -64,8 +65,8 @@ def download(**kwargs):
 @click.option("--title", "-t", default=None, required=True, help="小说标题")
 @click.option("--chapter_title", "-ct", default="all", help="小说章节标题,默认为全部")
 def decode(**kwargs):
-    ctx = click.get_current_context()
-    debug = ctx.parent.params.get("debug")
+    # ctx = click.get_current_context()
+    debug = kwargs.get("debug", False)
     if kwargs["chapter_title"] == "all":
         chapter_title_list = []
         file_list = Path(cfg.NOVELS_PATH / kwargs["title"]).glob("*.txt")
@@ -91,7 +92,9 @@ def decode(**kwargs):
 
 
 @main.command(help="获取小说章节目录并缓存到文件")
+@click.option("--cookie", "-c", default=None, help="cookie")
 @click.option("--id", "-i", default=None, required=True, help="小说ID")
+@click.option("--debug", "-d", is_flag=True, help="调试模式")
 @click.option(
     "--site",
     "-s",
@@ -109,8 +112,8 @@ def decode(**kwargs):
     type=click.Choice(["html", "json", "csv"]),
 )
 def get_index(**kwargs):
-    ctx = click.get_current_context()
-    debug = ctx.parent.params.get("debug")
+    # ctx = click.get_current_context()
+    debug = kwargs.get("debug", False)
     scraper = create_scraper_instance(
         site_name=kwargs["site"],
         book_id=kwargs["id"],
@@ -140,8 +143,8 @@ def get_index(**kwargs):
     type=click.Choice(scrapers),
 )
 def get_picture(**kwargs):
-    ctx = click.get_current_context()
-    debug = ctx.parent.params.get("debug")
+    # ctx = click.get_current_context()
+    debug = kwargs.get("debug", False)
     scraper = create_scraper_instance(
         site_name=kwargs["site"],
         book_id=kwargs["id"],
@@ -163,8 +166,8 @@ def get_picture(**kwargs):
     type=click.Choice(scrapers),
 )
 def get_author(**kwargs):
-    ctx = click.get_current_context()
-    debug = ctx.parent.params.get("debug")
+    # ctx = click.get_current_context()
+    debug = kwargs.get("debug", False)
     scraper = create_scraper_instance(
         site_name=kwargs["site"],
         book_id=kwargs["id"],

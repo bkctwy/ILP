@@ -6,7 +6,9 @@ import functools
 
 
 def load_plugins():
-    plugin_path = pathlib.Path("./scraper")
+    # print(os.listdir())
+    plugin_path = pathlib.Path(f"{os.getcwd()}/scraper")
+    sys.path.append(str(plugin_path))
     plugins = plugin_path.glob("*.py")
     for plugin in plugins:
         if plugin.stem == "base_scraper":
@@ -14,7 +16,8 @@ def load_plugins():
         class_name = ""
         for word in plugin.stem.split("_"):
             class_name += word.capitalize()
-        module_name = "scraper." + plugin.stem
+        # module_name = "scraper." + plugin.stem
+        module_name = plugin.stem
         module = __import__(module_name, fromlist=[class_name])
         instance = getattr(module, class_name)
         instance().add_to_shared_data()
@@ -60,7 +63,11 @@ def show_banner(text="ILP"):
 
 
 def set_title(text="ILP"):
-    os.system("title " + text)
+    if os.name == "nt":
+        os.system("title " + text)
+    elif os.name == "posix":
+        sys.stdout.write("\x1b]2;" + text + "\x07")
+        sys.stdout.flush()
 
 
 class SingletonMeta(type):
@@ -93,11 +100,7 @@ def create_scraper_instance(
     scraper_dict = shared_data.get_data("scrapers")
     scraper = scraper_dict[site_name]
     scraper.set_debug(debug)
-    scraper.set_id(book_id)
+    scraper.set_id(book_id, call_back_init=scraper.__init__)
     scraper.set_cookies(cookies)
-    scraper.set_logger()
-    return scraper_dict[site_name]
-
-
-if __name__ == "__main__":
-    show_banner()
+    scraper.set_logger(debug=debug)
+    return scraper

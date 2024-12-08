@@ -1,6 +1,8 @@
 __pycache__/
 *pyx
 *pyx/
+*.bat
+*.sh
 
 # Pyinstaller
 build/
@@ -17,7 +19,9 @@ dist/
 .vscode/
 venv/
 .env
+.venv/
 
+*.sql
 *.html
 cache*
 spiders/
@@ -31,3 +35,4 @@ GUI.py
 main.py
 map.json
 log.txt
+.github/workflows/main.yaml

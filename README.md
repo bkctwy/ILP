@@ -26,17 +26,17 @@
     - [ ] 正文
     - [x] 作者
     - [x] 封面
-- [ ] [飞卢小说](https://faloo.com "飞卢小说")
+- [x] [飞卢小说](https://faloo.com "飞卢小说")
     - [x] 标题
-    - [ ] 正文
+    - [x] 正文
     - [x] 作者
-    - [x] 封面
+    - [ ] 封面
 - [ ] 更多...
 
 ## 特性
 - 使用协程
 - 断点续传
-- 下载进度条
+- 进度显示
 - 缓存目录到数据库
 - 保存为多章节文件
 
@@ -45,11 +45,11 @@
 - [ ] 支持单文件输出
 - [ ] 支持缓存目录到Excel文件
 - [ ] 支持缓存目录到Redis
-- [ ] 支持跨平台（当前未测试在*Unix系统上是否可运行）
+- [x] ~~支持跨平台（当前未测试在Mac OS系统上是否可运行）~~
 
 ## 使用
 
-### 从源代码构建/运行
+### 从源代码运行
 
 #### 运行
 1. 克隆本项目`git clone https://github.com/ZeroMapleQvQ/ILP`
@@ -57,20 +57,9 @@
 3. 安装依赖`pip install -r requirements.txt`
 4. 运行`python novel_scraper.py --help`获取帮助信息
 
-#### 编译
-**重要：请使用与开发环境一致的Python版本（>=3.12）**
 
-**本程序未能成功使用nuitka编译**
-
-1. 克隆本项目`git clone https://github.com/ZeroMapleQvQ/ILP`
-2. 切换到项目目录`cd ILP`
-3. 安装依赖`pip install -r requirements.txt`
-4. 安装Pyinstaller`pip install pyinstaller`
-5. 执行`pyinstaller -F ILP.py`进行编译
-6. 切换到dist目录`cd dist`
-7. 运行`ILP.exe --help`获取帮助信息
-
-### 使用二进制文件（Windows And Linux）
+### ~~使用二进制文件（Windows And Linux）~~
+~~暂不提供二进制文件，请从使用源代码运行。~~
 
 #### Windows
 1. 从Github Actions页面下载压缩包（ILP-windows-latest-{commit-id}）

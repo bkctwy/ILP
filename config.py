@@ -1,9 +1,14 @@
 import json
 from pathlib import Path
+# from utils.utils import SingletonMeta
 
 
+# class Config(metaclass=SingletonMeta):
 class Config:
     def __init__(self, file_path=None):
+        if hasattr(self, "initialized"):
+            return
+        self.initialized = True
         if file_path is None:
             return
         self.file_path = Path(file_path)
@@ -12,6 +17,7 @@ class Config:
         self.read_cfg()
         self.load_cfg(self.__cfg)
         self.check_cfg()
+        self.sites = {}
 
     def read_cfg(self):
         with open("config.json", "r", encoding="utf-8") as f:
@@ -70,3 +76,7 @@ class Config:
 
 if __name__ == "__main__":
     cfg = Config("config.json")
+    cfg1 = Config("config.json")
+    cfg.sites.append("test")
+    print(cfg.sites)
+    print(cfg1.sites)

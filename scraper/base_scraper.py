@@ -67,18 +67,19 @@ class BaseScraper:
 
         # self.logger = Logger(f"{self.LOGS_PATH}/{self.id}.log")
 
-    def set_id(self, book_id: int) -> None:
+    def set_id(self, book_id: int, call_back_init=None) -> None:
         self.id = book_id
+        call_back_init(book_id)
 
-    def set_logger(self):
-        if self.debug:
+    def set_logger(self, debug=False):
+        if debug:
             self.logger = Logger.get_logger(
                 f"{self.LOGS_PATH}/{self.id}.log", logging.DEBUG
             )
-            return
-        self.logger = Logger.get_logger(
-            f"{self.LOGS_PATH}/{self.id}.log", logging.ERROR
-        )
+        else:
+            self.logger = Logger.get_logger(
+                f"{self.LOGS_PATH}/{self.id}.log", logging.ERROR
+            )
 
     def set_debug(self, debug: bool) -> None:
         self.debug = debug
@@ -210,13 +211,18 @@ class BaseScraper:
         finally:
             self.progress_bar.close()
 
-    async def async_get(self, url: str, headers=None, cookies=None) -> str:
+    async def async_get(
+        self, url: str, headers=None, cookies=None, encoding=None
+    ) -> str:
         async with self.sem:
             async with aiohttp.ClientSession() as session:
                 async with session.get(
                     url, headers=headers, cookies=cookies
                 ) as response:
-                    return await response.text()
+                    if encoding is None:
+                        return await response.text()
+                    else:
+                        return await response.text(encoding=encoding)
 
     async def fetch_chapter(self, index: int) -> None | bool:
         """获取单个章节"""

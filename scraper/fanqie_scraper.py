@@ -12,7 +12,7 @@ class FanqieScraper(BaseScraper):
     def __init__(self, book_id: int = None, alias: str = None, cookies=None) -> None:
         super().__init__(book_id, alias, cookies)
         self.base_url = "https://fanqienovel.com"
-        self.index_url = f"https://fanqienovel.com/page/{book_id}"
+        self.index_url = f"https://fanqienovel.com/page/{self.id}"
         self.index_api_url = (
             "https://fanqienovel.com/api/reader/directory/detail?bookId="
         )

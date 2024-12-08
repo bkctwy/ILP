@@ -45,7 +45,7 @@ class DB:
             sql = """
                 CREATE TABLE "{}" (
                     "md5_id"            TEXT,
-                    "chapter_id"               INTEGER,
+                    "chapter_id"               TEXT,
                     "chapter_title" TEXT,
                     "chapter_url"   TEXT,
                     "chapter_sum"  TEXT
@@ -138,9 +138,14 @@ class DB:
             case _:
                 print("文件类型不支持")
 
-    @staticmethod
-    def close_all_connections():
-        # 关闭所有线程的数据库连接
-        if hasattr(DB._local_data, "conn"):
-            DB._local_data.conn.close()
-            del DB._local_data.conn
+    # @staticmethod
+    # def close_all_connections():
+    #     # 关闭所有线程的数据库连接
+    #     if hasattr(DB._local_data, "conn"):
+    #         DB._local_data.conn.close()
+    #         del DB._local_data.conn
+
+
+if __name__ == "__main__":
+    db = DB("test.db")
+    db.create_table("test")
