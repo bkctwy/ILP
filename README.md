@@ -5,8 +5,6 @@
 
 「ILP」可以有多个含义，包括：
 
-(以下内容使用ChatGPT生成)
-
 ~~(ILP无确切的含义，选择一个你喜欢的就好)~~
 
 - Internet Literature Puller（互联网文学抓取器）
@@ -59,7 +57,7 @@
 
 
 ### ~~使用二进制文件（Windows And Linux）~~
-~~暂不提供二进制文件，请从使用源代码运行。~~
+**暂不提供二进制文件，请从源代码运行。**
 
 #### Windows
 1. 从Github Actions页面下载压缩包（ILP-windows-latest-{commit-id}）
