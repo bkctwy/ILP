@@ -1,5 +1,7 @@
 # ILP
 
+## **请移步[使用C++编写的新版本](https://github.com/bkctwy/ILP-Cpp)**
+
 ## 关于ILP
 本项目名称来源于动漫作品「魔法禁书目录」中的「禁书目录」（Index-Librorum-Prohibitorum）的缩写。意指本程序的功能是获取「禁书」。
 
@@ -50,10 +52,10 @@
 ### 从源代码运行
 
 #### 运行
-1. 克隆本项目`git clone https://github.com/ZeroMapleQvQ/ILP`
+1. 克隆本项目`git clone https://github.com/bkctwy/ILP`
 2. 切换到项目目录`cd ILP`
 3. 安装依赖`pip install -r requirements.txt`
-4. 运行`python novel_scraper.py --help`获取帮助信息
+4. 运行`python ILP.py --help`获取帮助信息
 
 
 ### ~~使用二进制文件（Windows And Linux）~~
